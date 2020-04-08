@@ -1,2 +1,5 @@
 # Unignore all with extensions
-!*.exe*
+*.dll
+*.exe
+*.o
+*.so
