@@ -14,18 +14,27 @@
                     // and as in the lib included stddef lib where size_t is defined, 
                     // there is no need to redefine the size_t
 
+#include <string.h> // for memcpy and memmove functions
+
 struct intVector 
-{
+{    
     int* head;         // for holding the head of the vector of integers
     size_t capacity;   // capacity should be 1.5 times greater than the size in order to prevent memory overflow
     size_t size;       // the size of the vector of integers
+    size_t difference; // the difference between capacity and size
+
+    int MIN_INT_VALUE; // for indicating error or wrong value
 };
 
 struct intVector* createIntVector (); // creating vector of integers
 
-void pushIntVector(struct intVector** head, const int value); // pushing the value to the array and if there is no 
+void pushIntVector (struct intVector* head, const int value); // pushing the value to the array and if there is no 
                                                               // place allocate larger memory for it and copy all 
                                                               // the data and free the previous memory and set head
                                                               // to the new allocated memory place
+
+void resizeIntVectorMemory (int** temp, const int capacity); // resizing memory in heap for arrays of data        
+
+void checkIntVectorMemory (struct intVector* temp); // check if the difference between the capacity and the size of the intVector is 1.5
 
 #endif

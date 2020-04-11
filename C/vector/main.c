@@ -3,9 +3,9 @@
 
 int main () 
 {       
-    struct intVector* temp = createIntVector();   
+    struct intVector* temp = createIntVector();  
 
-    pushIntVector(&temp, 32);    
+    
         
     return 0;
 }
