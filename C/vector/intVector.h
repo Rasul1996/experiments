@@ -16,12 +16,14 @@
 
 #include <string.h> // for memcpy and memmove functions
 
+#include <stdbool.h> // for boolean variables variables
+
 struct intVector 
 {    
     int* head;         // for holding the head of the vector of integers
     size_t capacity;   // capacity should be 1.5 times greater than the size in order to prevent memory overflow
     size_t size;       // the size of the vector of integers
-    size_t difference; // the difference between capacity and size
+    float difference; // the difference between capacity and size
 
     int MIN_INT_VALUE; // for indicating error or wrong value
 };
@@ -33,8 +35,14 @@ void pushIntVector (struct intVector* head, const int value); // pushing the val
                                                               // the data and free the previous memory and set head
                                                               // to the new allocated memory place
 
-void resizeIntVectorMemory (int** temp, const int capacity); // resizing memory in heap for arrays of data        
+void resizeIntVectorMemory (int** temp, const size_t capacity); // resizing memory in heap for arrays of data        
 
 void checkIntVectorMemory (struct intVector* temp); // check if the difference between the capacity and the size of the intVector is 1.5
 
+void insertValueToIntVector (struct intVector* temp, const size_t index, const size_t value); // insert int value to at any index of the int array
+
+int* getAllDataFromIntVector(const struct intVector* temp); // getting all the data from the array of the data of type integer
+                                                            // the user can easuly get the head of the array by sampleVector->head
+                                                            // but it is meant for users/developers not need to go deep to the struct
+                                                            // just extra feature
 #endif
