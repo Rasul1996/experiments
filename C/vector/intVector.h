@@ -28,21 +28,29 @@ struct intVector
     int MIN_INT_VALUE; // for indicating error or wrong value
 };
 
-struct intVector* createIntVector (); // creating vector of integers
-
-void pushIntVector (struct intVector* head, const int value); // pushing the value to the array and if there is no 
-                                                              // place allocate larger memory for it and copy all 
-                                                              // the data and free the previous memory and set head
-                                                              // to the new allocated memory place
-
+/* PRIVATE */
 void resizeIntVectorMemory (int** temp, const size_t capacity); // resizing memory in heap for arrays of data        
 
 void checkIntVectorMemory (struct intVector* temp); // check if the difference between the capacity and the size of the intVector is 1.5
 
-void insertValueToIntVector (struct intVector* temp, const size_t index, const size_t value); // insert int value to at any index of the int array
+
+/* PUBLIC */
+struct intVector* createIntVector (); // creating vector of integers
+
+void pushValueToIntVector (struct intVector* head, const int value); // pushing the value to the array and if there is no 
+                                                              // place allocate larger memory for it and copy all 
+                                                              // the data and free the previous memory and set head
+                                                              // to the new allocated memory place
+
+void insertValueToIntVector (struct intVector* temp, const size_t index, const int value); // insert int value to at any index of the int array
 
 int* getAllDataFromIntVector(const struct intVector* temp); // getting all the data from the array of the data of type integer
                                                             // the user can easuly get the head of the array by sampleVector->head
                                                             // but it is meant for users/developers not need to go deep to the struct
                                                             // just extra feature
+
+void showAllDataIntVector(const struct intVector* temp); // just showing all the data
+
+void unshiftValueToIntVector(struct intVector* temp, const int value); // add element to the beginning of the vector
+
 #endif
