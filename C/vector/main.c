@@ -12,13 +12,22 @@ int main ()
 
     insertValueToIntVector(temp, 2, 11);
     insertValueToIntVector(temp, 4, 44);
-
-    insertValueToIntVector(temp, 0, 1100);
-
+    
     unshiftValueToIntVector(temp, 6);
     unshiftValueToIntVector(temp, 5);
 
-    showAllDataIntVector(temp);    
+    insertValueToIntVector(temp, 0, 1100);
+
+    printf("%d  \n", shiftValueFromIntVector(temp));
+    printf("%d  \n", popValueFromIntVector(temp));
+
+    printf("is empty %d \n", isIntVectorEmpty(temp));
+
+    printf("element: %d \n\n", getElementFromIntVectorAt(temp, 2));
+    printf("element: %d \n\n", getFirstElementFromIntVector(temp));
+    printf("element: %d \n\n", getLastElementFromIntVector(temp));
+
+    showAllDataIntVector(temp);   
         
     return 0;
 }

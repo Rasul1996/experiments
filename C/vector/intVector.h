@@ -37,20 +37,38 @@ void checkIntVectorMemory (struct intVector* temp); // check if the difference b
 /* PUBLIC */
 struct intVector* createIntVector (); // creating vector of integers
 
-void pushValueToIntVector (struct intVector* head, const int value); // pushing the value to the array and if there is no 
+bool pushValueToIntVector (struct intVector* head, const int value); // pushing the value to the array and if there is no 
                                                               // place allocate larger memory for it and copy all 
                                                               // the data and free the previous memory and set head
                                                               // to the new allocated memory place
 
-void insertValueToIntVector (struct intVector* temp, const size_t index, const int value); // insert int value to at any index of the int array
+bool insertValueToIntVector (struct intVector* temp, const size_t index, const int value); // insert int value to at any index of the int array
+
+bool unshiftValueToIntVector(struct intVector* temp, const int value); // add element to the beginning of the vector
+
+void showAllDataIntVector(const struct intVector* temp); // just showing all the data
 
 int* getAllDataFromIntVector(const struct intVector* temp); // getting all the data from the array of the data of type integer
                                                             // the user can easuly get the head of the array by sampleVector->head
                                                             // but it is meant for users/developers not need to go deep to the struct
                                                             // just extra feature
 
-void showAllDataIntVector(const struct intVector* temp); // just showing all the data
 
-void unshiftValueToIntVector(struct intVector* temp, const int value); // add element to the beginning of the vector
+int removeValueFromIntVector(struct intVector* temp, const size_t index); // remove element from the intVector at given index 
+
+int popValueFromIntVector(struct intVector* temp); // remove the last element from the intVector and return that to-be removed value
+
+int shiftValueFromIntVector(struct intVector* temp); // remove the first element from the intVector and return that to-be removed value
+
+
+bool isIntVectorEmpty(const struct intVector* temp); // check if the int vector is empty
+
+int getElementFromIntVectorAt(const struct intVector* temp, const size_t index); // return the element/value of the int Vector at given index
+
+int getFirstElementFromIntVector(const struct intVector* temp); // return the first element/value of the int vector
+
+int getLastElementFromIntVector(const struct intVector* temp); // return the last element/value of the int vector
+
+size_t sizeOfIntVector(const struct intVector* temp); // get the length of the int vector
 
 #endif

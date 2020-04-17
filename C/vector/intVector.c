@@ -75,19 +75,8 @@ struct intVector* createIntVector ()
     return temp;
 }
 
-void pushValueToIntVector(struct intVector* temp, const int value) 
-{    
-    // implementation
-    const size_t index = temp->size; // the last index
-
-    insertValueToIntVector(temp, index, value);
-}
-
-void unshiftValueToIntVector(struct intVector* temp, const int value) // add element to the beginning of the vector
-{
-    const size_t index = 0; // the last index
-
-    insertValueToIntVector(temp, index, value);
+bool isIntVectorEmpty(const struct intVector* temp){    
+    return temp->size == 0;
 }
 
 int* getAllDataFromIntVector(const struct intVector* temp) 
@@ -104,17 +93,109 @@ void showAllDataIntVector(const struct intVector* temp)
     
 }
 
-void insertValueToIntVector (struct intVector* temp, const size_t index, const int value)
+bool unshiftValueToIntVector(struct intVector* temp, const int value) // add element to the beginning of the vector
+{
+    const size_t index = 0; // the last index
+
+    return insertValueToIntVector(temp, index, value);
+}
+
+bool pushValueToIntVector(struct intVector* temp, const int value) 
+{    
+    // implementation
+    const size_t index = temp->size; // the last index
+
+    return insertValueToIntVector(temp, index, value);
+}
+
+bool insertValueToIntVector (struct intVector* temp, const size_t index, const int value)
 {   
+    if (index > temp->size) {
+        return false;
+    }
     checkIntVectorMemory(temp); // check if the memory is enough for the next to be inserted value
         
-    if (temp->size != index) { // if index is not the last         
-        memcpy(temp->head+index+1, temp->head + index, sizeof(int) * (temp->size - index));        
+    if (index != temp->size) { // if index is not the last         
+        memcpy(temp->head + index + 1, temp->head + index, sizeof(int) * (temp->size - index));        
     }
 
     temp->head[index] = value; // inserting    
 
-    temp->size++;
+    ++temp->size;
+
+    return true;
+}
+
+int removeValueFromIntVector(struct intVector* temp, const size_t index)
+{
+    if (index >= temp->size) {
+        return temp->MIN_INT_VALUE;
+    }
+
+    checkIntVectorMemory(temp); // check if the size is lesser than the capacity of the intVector 'difference (1.5 by default)' times
+
+    const int toBeRemovedValue = temp->head[index];
+
+    if (index != temp->size - 1) {
+        memcpy(temp->head + index, temp->head + index + 1, sizeof(int) * (temp->size - index - 1));
+    }
+
+    --temp->size;
+
+    return toBeRemovedValue;
+}
+
+int popValueFromIntVector(struct intVector* temp)
+{
+    if (isIntVectorEmpty(temp)) {
+        return temp->MIN_INT_VALUE;
+    }
+
+    const size_t index = temp->size-1;    
+
+    return removeValueFromIntVector(temp, index);
+}
+
+int shiftValueFromIntVector(struct intVector* temp)
+{
+    if (isIntVectorEmpty(temp)) {
+        return temp->MIN_INT_VALUE;
+    }
+
+    return removeValueFromIntVector(temp, 0);
+}
+
+
+int getElementFromIntVectorAt(const struct intVector* temp, const size_t index)
+{    
+    return (index > temp->size) ? temp->MIN_INT_VALUE : temp->head[index];
+}
+
+int getFirstElementFromIntVector(const struct intVector* temp)
+{
+    if (isIntVectorEmpty(temp)) {
+        return temp->MIN_INT_VALUE;
+    }
+
+    const size_t index = 0;    
+
+    return getElementFromIntVectorAt(temp, index);
+}
+
+int getLastElementFromIntVector(const struct intVector* temp)
+{
+    if (isIntVectorEmpty(temp)) {
+        return temp->MIN_INT_VALUE;
+    }
+
+    const size_t index = temp->size-1;
+
+    return getElementFromIntVectorAt(temp, index);
+}
+
+size_t sizeOfIntVector(const struct intVector* temp)
+{
+    return temp->size;
 }
 
 /* <------------------------------ PUBLIC */
