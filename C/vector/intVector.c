@@ -75,7 +75,8 @@ struct intVector* createIntVector ()
     return temp;
 }
 
-bool isIntVectorEmpty(const struct intVector* temp){    
+bool isIntVectorEmpty(const struct intVector* temp)
+{
     return temp->size == 0;
 }
 
