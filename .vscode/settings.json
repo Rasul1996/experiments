@@ -4,6 +4,7 @@
         "stdlib.h": "c",
         "stddef.h": "c",
         "assert.h": "c",
-        "vector.h": "c"
+        "vector.h": "c",
+        "doublelinkedlist.h": "c"
     }
 }
