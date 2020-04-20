@@ -40,4 +40,6 @@ size_t sizeOfList(struct list* head); // gets the size of the list
 int firstValueInList(struct list* head);
 
 int lastValueInList(struct list* head);
+
+void clearList(struct list* head); // clearing the list
 #endif

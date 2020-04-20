@@ -89,3 +89,14 @@ int lastValueInList(struct list* head)
 {
     return head->last ? head->last->data : MIN_INT_VALUE;
 }
+
+void clearList(struct list* head) // clearing the list
+{
+    struct listNode* node = head->first;
+
+    while (node != NULL)
+    {        
+        free(node); // dealocate each dynamic memory for each node
+        node = node->next;
+    }
+}
