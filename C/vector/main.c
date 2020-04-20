@@ -31,6 +31,7 @@ int main ()
 
     printf("All values: \n\n");
     showAllDataIntVector(temp);   
-        
+
+    destroyIntVector(&temp);                
     return 0;
 }

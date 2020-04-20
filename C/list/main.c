@@ -3,6 +3,8 @@
 
 int main()
 {
+    struct list* temp1 = NULL;
+    printf("SSSSS %p", temp1);
     struct list* temp = createlist();
 
     pushFrontTolist(temp, 1);    
@@ -27,7 +29,6 @@ int main()
     clearList(temp);
     showAllListData(temp);
 
-    destroyList(temp);
-    
+    destroyList(&temp);    
     return 0;
 }

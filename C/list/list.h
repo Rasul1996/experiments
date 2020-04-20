@@ -43,6 +43,6 @@ int lastValueInList(struct list* head);
 
 void clearList(struct list* head); // clearing the list
 
-void destroyList(struct list* head); // destroy the list
+void destroyList(struct list** head); // destroy the list
 
 #endif

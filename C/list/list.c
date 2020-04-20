@@ -106,11 +106,11 @@ void clearList(struct list* head) // clearing the list
     head->size = 0;
 }
 
-void destroyList(struct list* head) // destroy the list
+void destroyList(struct list** head) // destroy the list
 {            
-    head->first = NULL;
-    head->last = NULL;
+    (*head)->first = NULL;
+    (*head)->last = NULL;
 
-    free(head);
-    head = NULL;    
+    free(*head);
+    *head = NULL;    
 }

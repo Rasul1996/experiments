@@ -71,4 +71,7 @@ int getLastElementFromIntVector(const struct intVector* temp); // return the las
 
 size_t sizeOfIntVector(const struct intVector* temp); // get the length of the int vector
 
+void clearIntVector(struct intVector* temp); // clears the vector
+
+void destroyIntVector(struct intVector** temp); // destroys the vector
 #endif

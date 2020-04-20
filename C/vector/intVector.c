@@ -41,11 +41,11 @@ void checkIntVectorMemory (struct intVector* temp)
     }
     else if (!(length * difference > capacity) && length != 0) // need to decrease the capactiy the '(*temp)->difference' times
     {                 
-        // needResizeMemory = true;
-        // temp->capacity /= difference;
+        needResizeMemory = true;
+        temp->capacity /= difference;
     }
 
-    if (needResizeMemory) {            
+    if (needResizeMemory) {   
         resizeIntVectorMemory(&temp->head, capacity);
     }
 }
@@ -199,5 +199,23 @@ size_t sizeOfIntVector(const struct intVector* temp)
     return temp->size;
 }
 
+void clearIntVector(struct intVector* temp) // clears the vector
+{   
+    temp->size = 0;
+    temp->capacity = 3;
+
+    free(temp->head); // deallocate the dynamic memory space
+
+    temp->head = NULL;
+}
+
+void destroyIntVector(struct intVector** temp) // destroys the vector
+{   
+    (*temp)->size = 0;
+    (*temp)->capacity = 3;
+
+    free(*temp);
+    *temp = NULL;
+}
 /* <------------------------------ PUBLIC */
 
