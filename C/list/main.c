@@ -24,7 +24,9 @@ int main()
     
     printf("AFTER. \n\n");
 
-    clearList(temp);
-    showAllListData(temp);
+    //clearList(temp);
+    //showAllListData(temp);
+
+    destroyList(&temp);
     return 0;
 }
