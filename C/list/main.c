@@ -21,5 +21,10 @@ int main()
     printf("SIZE: %lu \n", sizeOfList(temp));
 
     showAllListData(temp);
+
+    printf("AFTER. \n\n");
+
+    clearList(temp);
+    showAllListData(temp);
     return 0;
 }

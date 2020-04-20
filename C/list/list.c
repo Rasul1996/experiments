@@ -99,4 +99,7 @@ void clearList(struct list* head) // clearing the list
         free(node); // dealocate each dynamic memory for each node
         node = node->next;
     }
+
+    head->first = NULL;
+    head->last = NULL;
 }
