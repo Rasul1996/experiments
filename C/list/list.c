@@ -109,6 +109,7 @@ void destroyList(struct list** head) // destroy the list
 {
     free(head);
     
+    
     (*head)->first = NULL;
     (*head)->last = NULL;
     head = NULL;    
