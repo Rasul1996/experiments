@@ -12,6 +12,7 @@ struct list* createlist() // creates the list
     temp->last = NULL;
     temp->size = 0;
 
+    printf("START: %p \n", temp);
     return temp;
 }
 
@@ -105,12 +106,11 @@ void clearList(struct list* head) // clearing the list
     head->size = 0;
 }
 
-void destroyList(struct list** head) // destroy the list
-{
+void destroyList(struct list* head) // destroy the list
+{            
+    head->first = NULL;
+    head->last = NULL;
+
     free(head);
-    
-    
-    (*head)->first = NULL;
-    (*head)->last = NULL;
     head = NULL;    
 }
