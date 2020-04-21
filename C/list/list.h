@@ -7,6 +7,8 @@
                     // and as in the lib included stddef lib where size_t is defined, 
                     // there is no need to redefine the size_t
 
+#include <stdbool.h> // for boolean variables variables
+
 #define MIN_INT_VALUE -2147483648; // the minimum number that int value can store. It is for indicating error/wrong/initial value that means nothing
 
 struct list // this is a container that has only pointers to the first and last nodes
@@ -27,13 +29,19 @@ struct listNode // this is the node that stores data and pointers to the next an
 
 struct list* createlist(); // creates the double linked list
 
-struct listNode* createListNode(const int value); // creates double linked list node and initializes it with value to the data and 
-                                                                                    // the prevNode that is THE previous node that the new node stores in prev pointer
+struct listNode* createListNode(const int value);   // creates double linked list node and initializes it with value to the data and 
+                                                    // the prevNode that is THE previous node that the new node stores in prev pointer
+
+void insertElementToList(struct list* head, const size_t index, const int value); // inserts element at the given position to the list
 void pushBackTolist(struct list* head, const int value); // pushes value the list at the end
 
 void pushFrontTolist(struct list* head, const int value); // pushes value the list at the front
 
 void showAllListData(struct list* head); // shows all the data in the list by iterating
+
+bool popBackFromList(struct list* head); // pops tha last element from the list
+bool popFrontFromList(struct list* head); // pops tha first element from the list
+bool removeElementFromListAt(struct list* head, const size_t index); // removes an element from the list at the given index
 
 size_t sizeOfList(struct list* head); // gets the size of the list
 

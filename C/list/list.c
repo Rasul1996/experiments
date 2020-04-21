@@ -11,8 +11,7 @@ struct list* createlist() // creates the list
     temp->first = NULL;
     temp->last = NULL;
     temp->size = 0;
-
-    printf("START: %p \n", temp);
+    
     return temp;
 }
 
@@ -27,6 +26,42 @@ struct listNode* createListNode(const int value) // creates double linked list n
     node->next = NULL;    
 
     return node;
+}
+
+void insertElementToList(struct list* head, const size_t index, const int value) // inserts element at the given position to the list
+{
+    if (index > head->size) {
+        return;
+    }
+
+    if (index == 0) {
+        pushFrontTolist(head, value);
+        return;
+    }
+    else if (index == head->size)
+    {
+        pushBackTolist(head, value);
+        return;
+    }
+        
+
+    struct listNode* prevNode = NULL;
+    struct listNode* temp = head->first;
+
+    for (size_t i = 0; i < index; i++)
+    {           
+        temp = temp->next;
+    }
+
+    prevNode = temp;
+    temp = temp->next;
+
+    struct listNode* node = createListNode(value);    
+
+    prevNode->next = node;
+    node->next = temp;
+
+    ++head->size;
 }
 
 void pushBackTolist(struct list* head, const int value) // pushes value the list
@@ -61,6 +96,78 @@ void pushFrontTolist(struct list* head, const int value) // pushes value the lis
     }
 
     ++head->size;
+}
+
+bool popBackFromList(struct list* head) // pops tha last element from the list
+{
+    struct listNode* targetNode = head->first;
+
+    if(targetNode == NULL){
+        return false;
+    }
+
+    struct listNode* temp = targetNode;
+    while (targetNode->next != NULL) // iterate till the last element
+    {   
+        temp = targetNode;
+        targetNode = targetNode->next;
+    }    
+    
+    free(targetNode);
+    temp->next = NULL;
+
+    head->last = temp;
+    --head->size;
+
+    return true;
+}
+
+bool popFrontFromList(struct list* head) // pops tha first element from the list
+{
+    struct listNode* temp = head->first;
+
+    if(temp == NULL){
+        return false;
+    }    
+        
+    head->first = head->first->next ? head->first->next : NULL;
+
+    free(temp);
+
+    --head->size;
+
+    return true;
+}
+
+bool removeElementFromListAt(struct list* head, const size_t index) // removes an element from the list at the given index
+{
+    if (index > head->size) {
+        return false;
+    }
+    else if (index == 0)
+    {
+        return popFrontFromList(head);
+    }
+    else if (index == head->size)
+    {
+        return popBackFromList(head);
+    }
+    
+    struct listNode* targetNode = head->first;
+    struct listNode* temp = targetNode;
+
+    for (size_t i = 0; i < index; i++)
+    {
+        temp = targetNode;
+
+        targetNode = targetNode->next;
+    }
+    
+    temp->next = targetNode->next;
+    free(targetNode);
+
+    --head->size;
+    return true;
 }
 
 void showAllListData(struct list* head) // shows all the data in the list by iterating
